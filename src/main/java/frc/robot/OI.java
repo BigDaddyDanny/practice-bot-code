@@ -143,9 +143,9 @@ public class OI {
         cargoChute = new POVButton(xbox, 0);
         depotPickup = new POVButton(xbox, 180);
         
-        grabPanel.whenActive(new MoveArm(ArmState.GRAB_PANEL));
-        cargoChute.whenActive(new MoveArm(ArmState.CARGO_CHUTE));
-        depotPickup.whenActive(new MoveArm(ArmState.DEPOT_PICKUP));
+        grabPanel.whenActive(new MoveArm(ArmState.GRAB_PANEL, false));
+        cargoChute.whenActive(new MoveArm(ArmState.CARGO_CHUTE, false));
+        depotPickup.whenActive(new MoveArm(ArmState.DEPOT_PICKUP, false));
 
 
         armDown.whenActive(new Command(){
@@ -168,14 +168,14 @@ public class OI {
             }
         });
 
-        armBottom.whenActive(new MoveArm(ArmState.BOTTOM));
-        armMiddle.whenActive(new MoveArm(ArmState.MIDDLE));
-        armHigh.whenActive(new MoveArm(ArmState.HIGH));
+        armBottom.whenActive(new MoveArm(ArmState.BOTTOM, false));
+        armMiddle.whenActive(new MoveArm(ArmState.MIDDLE, false));
+        armHigh.whenActive(new MoveArm(ArmState.HIGH, false));
 
-        cargoHigh.whenActive(new MoveArm(ArmState.CARGO_HIGH));
-        panelLow.whenActive(new MoveArm(ArmState.CARGO_LOW));
-        panelMiddle.whenActive(new MoveArm(ArmState.PANEL_MIDDLE));
-        panelHigh.whenActive(new MoveArm(ArmState.PANEL_HIGH));
+        cargoHigh.whenActive(new MoveArm(ArmState.CARGO_HIGH, false));
+        panelLow.whenActive(new MoveArm(ArmState.CARGO_LOW, false));
+        panelMiddle.whenActive(new MoveArm(ArmState.PANEL_MIDDLE, false));
+        panelHigh.whenActive(new MoveArm(ArmState.PANEL_HIGH, false));
         
         /*************************************************/
 

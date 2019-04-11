@@ -67,7 +67,7 @@ public class Drivetrain extends Subsystem {
 
   }
   public double getPos(){
-   return rightMaster.get();
+   return rightMaster.getEncoder().getPosition();
    
   }
 
@@ -112,5 +112,8 @@ public class Drivetrain extends Subsystem {
 
   }
 
+  public double getSpeed(){
+    return rightMaster.get();
+  }
 
 }

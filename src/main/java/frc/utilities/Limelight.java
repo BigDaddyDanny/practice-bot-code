@@ -15,6 +15,7 @@ public class Limelight {
     private NetworkTable table;
     private NetworkTableEntry tx;
     private NetworkTableEntry ty;
+    private NetworkTableEntry ta;
 
     private boolean isTracking;
 
@@ -31,6 +32,7 @@ public class Limelight {
         isTracking = false;
         tx = table.getEntry("tx");
         ty = table.getEntry("ty");
+        ta = table.getEntry("ta");
         
     }
 
@@ -46,8 +48,6 @@ public class Limelight {
 
     }
 
-    
-
     public double getX(){
         return tx.getDouble(0.0);
     }
@@ -56,9 +56,12 @@ public class Limelight {
         return ty.getDouble(0.0);
     }
 
+    public double getArea(){
+        return ta.getDouble(0.0);
+    }
+
     public boolean getIsTracking(){
         return isTracking;
     }
-
 
 }

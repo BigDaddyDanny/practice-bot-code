@@ -14,18 +14,20 @@ import frc.subsystems.Arm.ArmState;
 public class MoveArm extends Command {
   
   ArmState state;
-  // The N Word
 
-  public MoveArm(ArmState s) {
+  public MoveArm(ArmState s, boolean isInstant) {
     requires(Arm.getInstance());
     
     state = s;
+
+    if(isInstant){
+      start();
+    }
   }
   
   // Called once when the command executes
   @Override
   protected void initialize() {
-    System.out.println("EXECUTED");
     Arm.getInstance().setState(state);
   }
 

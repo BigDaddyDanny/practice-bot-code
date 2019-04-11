@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.commands.Auto;
 import frc.subsystems.Arm;
 import frc.subsystems.Drivetrain;
 import frc.subsystems.Wrist;
@@ -41,7 +42,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-    System.out.println(Limelight.getInstance().getY());
     Scheduler.getInstance().run();
     
   }
@@ -53,10 +53,12 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     
     Wrist.getInstance().z();
-    Arm.getInstance().z();    
-   
-  }
+    Arm.getInstance().z();  
+  
+    Auto h = new Auto();
 
+  }
+  
   /**
    * This function is called periodically during autonomous.
    */
@@ -83,13 +85,10 @@ public class Robot extends TimedRobot {
    * This function is called periodically during teleoperated mode.
    */
   
-  
   @Override
   public void teleopPeriodic() {
 
     Drivetrain.getInstance().setSpeed(OI.getInstance().getDriveFwd(), OI.getInstance().getDriveHoz());
-    System.out.println(Limelight.getInstance().getY());
-    System.out.println("Wrist: " + Wrist.getInstance().getPos());
     
   }
 

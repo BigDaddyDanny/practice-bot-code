@@ -8,39 +8,61 @@
 package frc.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
-import frc.subsystems.Climber;
+import frc.subsystems.Drivetrain;
 
-public class DeLift extends Command {
-  
-  public DeLift() {
+public class MoveBack extends Command {
+ 
+  private  double distance;
+  private final double FEET_TO_TICKS = 4.738089561462402;
 
-    requires(Climber.getInstance());
-  
+  public MoveBack(double feet) {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+
+    feet = Math.abs(feet);
+
+    distance = -feet * FEET_TO_TICKS;
+    distance -= ((FEET_TO_TICKS / 12) * 4);
+
+    start();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    Drivetrain.getInstance().zero();
+    Drivetrain.getInstance().setSpeed(-.3, 0);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    Climber.getInstance().setLift(RobotMap.notLifted - Climber.getInstance().getLiftPosition());
+
+    double offset = 0;
+    if(Drivetrain.getInstance().getRightPosition() > Drivetrain.getInstance().getLeftPosition()){
+      offset = -.1;
+    }else if(Drivetrain.getInstance().getLeftPosition() > Drivetrain.getInstance().getRightPosition()){
+      offset = .1;
+    }
+
+    Drivetrain.getInstance().setSpeed(-.3, offset);
+
+
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Climber.getInstance().getLiftPosition() < RobotMap.notLifted);
+    return Drivetrain.getInstance().getPos() <= distance;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Drivetrain.getInstance().setSpeed(0, 0);
   }
 
   // Called when another command which requires one or more of the same

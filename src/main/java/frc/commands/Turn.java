@@ -8,28 +8,30 @@
 package frc.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.subsystems.Climber;
-import frc.robot.RobotMap;
-import frc.subsystems.Climber;
+import frc.subsystems.Drivetrain;
 
-public class Lift extends Command {
- 
-  public Lift() {
+public class Turn extends Command {
+  public Turn(double angle) {// + is clockwise, - is counterclockwise
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
 
-    requires(Climber.getInstance());
-  
+    
+
+    start();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // if()
+    // Drivetrain.getInstance()
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    Climber.getInstance().setLift(RobotMap.lifted - Climber.getInstance().getLiftPosition());
+
 
   }
 
@@ -42,6 +44,7 @@ public class Lift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Drivetrain.getInstance().setSpeed(0, 0);
   }
 
   // Called when another command which requires one or more of the same
